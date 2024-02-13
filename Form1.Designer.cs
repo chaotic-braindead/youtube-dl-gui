@@ -33,23 +33,32 @@
             chkAudio = new CheckBox();
             cmbExtension = new ComboBox();
             saveDirectory = new FolderBrowserDialog();
-            downloadBar = new ProgressBar();
-            label1 = new Label();
             txtDebug = new TextBox();
+            tblQueue = new DataGridView();
+            Link = new DataGridViewTextBoxColumn();
+            Title = new DataGridViewTextBoxColumn();
+            Type = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
+            Progress = new DataGridViewTextBoxColumn();
+            Speed = new DataGridViewTextBoxColumn();
+            Remove = new DataGridViewButtonColumn();
+            btnQueue = new Button();
+            label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)tblQueue).BeginInit();
             SuspendLayout();
             // 
             // txtUrl
             // 
-            txtUrl.Location = new Point(128, 222);
+            txtUrl.Location = new Point(96, 64);
             txtUrl.Name = "txtUrl";
             txtUrl.PlaceholderText = "URL";
-            txtUrl.Size = new Size(346, 25);
+            txtUrl.Size = new Size(483, 25);
             txtUrl.TabIndex = 0;
-            txtUrl.TextChanged += txtUrl_TextChanged;
             // 
             // btnDownload
             // 
-            btnDownload.Location = new Point(607, 222);
+            btnDownload.Enabled = false;
+            btnDownload.Location = new Point(443, 397);
             btnDownload.Name = "btnDownload";
             btnDownload.Size = new Size(75, 25);
             btnDownload.TabIndex = 1;
@@ -60,7 +69,7 @@
             // chkAudio
             // 
             chkAudio.AutoSize = true;
-            chkAudio.Location = new Point(128, 253);
+            chkAudio.Location = new Point(96, 95);
             chkAudio.Name = "chkAudio";
             chkAudio.Size = new Size(91, 21);
             chkAudio.TabIndex = 2;
@@ -71,59 +80,122 @@
             // cmbExtension
             // 
             cmbExtension.FormattingEnabled = true;
-            cmbExtension.Items.AddRange(new object[] { "mov", "mp4", "wmv" });
-            cmbExtension.Location = new Point(480, 222);
+            cmbExtension.Items.AddRange(new object[] { "flv", "mp4", "webm" });
+            cmbExtension.Location = new Point(599, 64);
             cmbExtension.Name = "cmbExtension";
             cmbExtension.Size = new Size(121, 25);
             cmbExtension.Sorted = true;
             cmbExtension.TabIndex = 3;
-            cmbExtension.SelectedIndexChanged += cmbExtension_SelectedIndexChanged;
-            // 
-            // downloadBar
-            // 
-            downloadBar.Location = new Point(128, 435);
-            downloadBar.MarqueeAnimationSpeed = 5;
-            downloadBar.Name = "downloadBar";
-            downloadBar.Size = new Size(554, 23);
-            downloadBar.Step = 2;
-            downloadBar.Style = ProgressBarStyle.Marquee;
-            downloadBar.TabIndex = 4;
-            downloadBar.Visible = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(376, 475);
-            label1.Name = "label1";
-            label1.Size = new Size(43, 17);
-            label1.TabIndex = 5;
-            label1.Text = "label1";
-            label1.Visible = false;
             // 
             // txtDebug
             // 
-            txtDebug.Location = new Point(128, 280);
+            txtDebug.Location = new Point(38, 446);
             txtDebug.Multiline = true;
             txtDebug.Name = "txtDebug";
             txtDebug.ReadOnly = true;
             txtDebug.ScrollBars = ScrollBars.Vertical;
-            txtDebug.Size = new Size(554, 137);
+            txtDebug.Size = new Size(873, 123);
             txtDebug.TabIndex = 6;
+            // 
+            // tblQueue
+            // 
+            tblQueue.AllowUserToAddRows = false;
+            tblQueue.BackgroundColor = SystemColors.ControlLightLight;
+            tblQueue.BorderStyle = BorderStyle.None;
+            tblQueue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblQueue.Columns.AddRange(new DataGridViewColumn[] { Link, Title, Type, Status, Progress, Speed, Remove });
+            tblQueue.GridColor = SystemColors.ControlLightLight;
+            tblQueue.Location = new Point(38, 135);
+            tblQueue.MultiSelect = false;
+            tblQueue.Name = "tblQueue";
+            tblQueue.ReadOnly = true;
+            tblQueue.RowHeadersVisible = false;
+            tblQueue.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tblQueue.Size = new Size(873, 256);
+            tblQueue.TabIndex = 7;
+            tblQueue.CellContentClick += tblQueue_CellContentClick;
+            // 
+            // Link
+            // 
+            Link.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Link.HeaderText = "Link";
+            Link.Name = "Link";
+            Link.ReadOnly = true;
+            // 
+            // Title
+            // 
+            Title.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Title.HeaderText = "Title";
+            Title.Name = "Title";
+            Title.ReadOnly = true;
+            // 
+            // Type
+            // 
+            Type.HeaderText = "Type";
+            Type.Name = "Type";
+            Type.ReadOnly = true;
+            Type.Width = 75;
+            // 
+            // Status
+            // 
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
+            Status.ReadOnly = true;
+            // 
+            // Progress
+            // 
+            Progress.HeaderText = "Progress";
+            Progress.Name = "Progress";
+            Progress.ReadOnly = true;
+            // 
+            // Speed
+            // 
+            Speed.HeaderText = "Speed";
+            Speed.Name = "Speed";
+            Speed.ReadOnly = true;
+            // 
+            // Remove
+            // 
+            Remove.HeaderText = "";
+            Remove.Name = "Remove";
+            Remove.ReadOnly = true;
+            Remove.Text = "Remove";
+            // 
+            // btnQueue
+            // 
+            btnQueue.Location = new Point(740, 64);
+            btnQueue.Name = "btnQueue";
+            btnQueue.Size = new Size(75, 23);
+            btnQueue.TabIndex = 8;
+            btnQueue.Text = "Queue";
+            btnQueue.UseVisualStyleBackColor = true;
+            btnQueue.Click += btnQueue_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(38, 417);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 17);
+            label2.TabIndex = 9;
+            label2.Text = "Logs:";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 591);
+            ClientSize = new Size(949, 597);
+            Controls.Add(label2);
+            Controls.Add(btnQueue);
+            Controls.Add(tblQueue);
             Controls.Add(txtDebug);
-            Controls.Add(label1);
-            Controls.Add(downloadBar);
             Controls.Add(cmbExtension);
             Controls.Add(chkAudio);
             Controls.Add(btnDownload);
             Controls.Add(txtUrl);
             Name = "Form1";
             Text = "Youtube-DL-GUI";
+            ((System.ComponentModel.ISupportInitialize)tblQueue).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,8 +206,16 @@
         private CheckBox chkAudio;
         private ComboBox cmbExtension;
         private FolderBrowserDialog saveDirectory;
-        private ProgressBar downloadBar;
-        private Label label1;
         private TextBox txtDebug;
+        private DataGridView tblQueue;
+        private Button btnQueue;
+        private Label label2;
+        private DataGridViewTextBoxColumn Link;
+        private DataGridViewTextBoxColumn Title;
+        private DataGridViewTextBoxColumn Type;
+        private DataGridViewTextBoxColumn Status;
+        private DataGridViewTextBoxColumn Progress;
+        private DataGridViewTextBoxColumn Speed;
+        private DataGridViewButtonColumn Remove;
     }
 }

@@ -12,23 +12,10 @@ namespace youtube_dl_GUI
     internal class Youtube
     {
         private ProcessStartInfo process;
-        string path;
-        public Youtube() { 
+        public Youtube(string ytdlPath) { 
             try
             {
-                path = Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%\\Programs\\Python\\");
-                Regex pyVer = new Regex("Python3[0-9]+");
-                List<string> res = Directory.GetDirectories(path).Where(path => pyVer.IsMatch(path)).ToList();
-                if (res.Count < 1)
-                {
-                    throw new Exception("Python does not exist in your system. Please install.");
-                }
-                path = res[0] + "\\Scripts\\youtube-dl.exe";
-                if (!File.Exists(path))
-                {
-                    throw new Exception("youtube-dl does not exist in your system. Please install.");
-                }
-                process = new ProcessStartInfo(path);
+                process = new ProcessStartInfo(ytdlPath);
                 process.WindowStyle = ProcessWindowStyle.Hidden;
                 process.RedirectStandardOutput = true; 
             }
@@ -36,6 +23,23 @@ namespace youtube_dl_GUI
             {
                 Console.WriteLine(e.Message);
             }
+        }
+        public string GetTitle(string url, IProgress<string> msg)
+        {
+            try
+            {
+                string args = String.Format(" --print \"%(title)s\" \"" +
+                    url + "\"");
+                process.Arguments = args;
+                Process? proc = Process.Start(process);
+                msg.Report(proc.StandardOutput.ReadLine());
+                proc.WaitForExit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
         }
         public void DownloadAudio(Dictionary<string, string> options, IProgress<string> msg)
         {
@@ -69,7 +73,7 @@ namespace youtube_dl_GUI
             try
             {
                 string args = String.Format("--verbose " +
-                    "--recode-video={0} " +
+                    "-f \"bestvideo[ext={0}]+bestaudio[ext=m4a]/best[ext=mp4]/best\" "+
                     "--audio-quality=0 " +
                     "-o \"{1}\" " +
                     "{2}",
@@ -79,7 +83,7 @@ namespace youtube_dl_GUI
                 process.Arguments = args;
                 Process? proc = Process.Start(process);
                 while (!proc.StandardOutput.EndOfStream)
-                    msg.Report(proc.StandardOutput.ReadLine() + "\n");
+                    msg.Report(proc.StandardOutput.ReadLine() + Environment.NewLine);
                 proc.WaitForExit();
             }
             catch (Exception e)

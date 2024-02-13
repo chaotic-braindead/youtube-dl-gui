@@ -14,3 +14,4 @@ C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Debug\net8.0-windows\refin
 C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Debug\net8.0-windows\youtube-dl-GUI.pdb
 C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Debug\net8.0-windows\youtube-dl-GUI.genruntimeconfig.cache
 C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Debug\net8.0-windows\ref\youtube-dl-GUI.dll
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Debug\net8.0-windows\youtube-dl-GUI.sourcelink.json

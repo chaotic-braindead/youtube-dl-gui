@@ -1,0 +1,17 @@
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\bin\Release\net8.0-windows\youtube-dl-GUI.exe
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\bin\Release\net8.0-windows\youtube-dl-GUI.deps.json
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\bin\Release\net8.0-windows\youtube-dl-GUI.runtimeconfig.json
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\bin\Release\net8.0-windows\youtube-dl-GUI.dll
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\bin\Release\net8.0-windows\youtube-dl-GUI.pdb
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube_dl_GUI.Form1.resources
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.csproj.GenerateResource.cache
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.AssemblyInfoInputs.cache
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.AssemblyInfo.cs
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.csproj.CoreCompileInputs.cache
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.sourcelink.json
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.dll
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\refint\youtube-dl-GUI.dll
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.pdb
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\youtube-dl-GUI.genruntimeconfig.cache
+C:\Users\raffy\Desktop\code\csharp\youtube-dl-GUI\obj\Release\net8.0-windows\ref\youtube-dl-GUI.dll
