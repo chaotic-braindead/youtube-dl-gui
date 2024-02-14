@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -24,7 +25,25 @@ namespace youtube_dl_GUI
                 Console.WriteLine(e.Message);
             }
         }
-        public string GetTitle(string url, IProgress<string> msg)
+        public void GetURL(string playlist, IProgress<string> urls) {
+            try
+            {
+                string args = String.Format(" --no-download " +
+                    "--print \"%(webpage_url)s\" \"" +
+                    playlist + "\"");
+                process.Arguments = args;
+                Process? proc = Process.Start(process);
+                while (!proc.StandardOutput.EndOfStream)
+                    urls.Report(proc.StandardOutput.ReadLine());
+
+                proc.WaitForExit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void GetTitle(string url, IProgress<string> msg)
         {
             try
             {
@@ -39,8 +58,8 @@ namespace youtube_dl_GUI
             {
                 Console.WriteLine(e.Message);
             }
-            return null;
         }
+    
         public void DownloadAudio(Dictionary<string, string> options, IProgress<string> msg)
         {
             try

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("youtube-dl-GUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42afcf97f86a94a2af12f27f33ca2eadd2903d82")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a21d9f1b414ee9da3b7d60d74694d3837b090155")]
 [assembly: System.Reflection.AssemblyProductAttribute("youtube-dl-GUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("youtube-dl-GUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

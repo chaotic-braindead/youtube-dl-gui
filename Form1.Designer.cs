@@ -35,6 +35,8 @@
             saveDirectory = new FolderBrowserDialog();
             txtDebug = new TextBox();
             tblQueue = new DataGridView();
+            btnQueue = new Button();
+            label2 = new Label();
             Link = new DataGridViewTextBoxColumn();
             Title = new DataGridViewTextBoxColumn();
             Type = new DataGridViewTextBoxColumn();
@@ -42,8 +44,6 @@
             Progress = new DataGridViewTextBoxColumn();
             Speed = new DataGridViewTextBoxColumn();
             Remove = new DataGridViewButtonColumn();
-            btnQueue = new Button();
-            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)tblQueue).BeginInit();
             SuspendLayout();
             // 
@@ -104,6 +104,7 @@
             tblQueue.BorderStyle = BorderStyle.None;
             tblQueue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblQueue.Columns.AddRange(new DataGridViewColumn[] { Link, Title, Type, Status, Progress, Speed, Remove });
+            tblQueue.EditMode = DataGridViewEditMode.EditOnEnter;
             tblQueue.GridColor = SystemColors.ControlLightLight;
             tblQueue.Location = new Point(38, 135);
             tblQueue.MultiSelect = false;
@@ -114,6 +115,25 @@
             tblQueue.Size = new Size(873, 256);
             tblQueue.TabIndex = 7;
             tblQueue.CellContentClick += tblQueue_CellContentClick;
+            // 
+            // btnQueue
+            // 
+            btnQueue.Location = new Point(740, 64);
+            btnQueue.Name = "btnQueue";
+            btnQueue.Size = new Size(75, 23);
+            btnQueue.TabIndex = 8;
+            btnQueue.Text = "Queue";
+            btnQueue.UseVisualStyleBackColor = true;
+            btnQueue.Click += btnQueue_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(38, 417);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 17);
+            label2.TabIndex = 9;
+            label2.Text = "Logs:";
             // 
             // Link
             // 
@@ -131,10 +151,12 @@
             // 
             // Type
             // 
+            Type.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             Type.HeaderText = "Type";
             Type.Name = "Type";
             Type.ReadOnly = true;
-            Type.Width = 75;
+            Type.Resizable = DataGridViewTriState.False;
+            Type.Width = 60;
             // 
             // Status
             // 
@@ -160,25 +182,6 @@
             Remove.Name = "Remove";
             Remove.ReadOnly = true;
             Remove.Text = "Remove";
-            // 
-            // btnQueue
-            // 
-            btnQueue.Location = new Point(740, 64);
-            btnQueue.Name = "btnQueue";
-            btnQueue.Size = new Size(75, 23);
-            btnQueue.TabIndex = 8;
-            btnQueue.Text = "Queue";
-            btnQueue.UseVisualStyleBackColor = true;
-            btnQueue.Click += btnQueue_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(38, 417);
-            label2.Name = "label2";
-            label2.Size = new Size(39, 17);
-            label2.TabIndex = 9;
-            label2.Text = "Logs:";
             // 
             // Form1
             // 

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Text.RegularExpressions;
 using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.LinkLabel;
 
 namespace youtube_dl_GUI
 {
@@ -58,13 +59,11 @@ namespace youtube_dl_GUI
                 return;
 
             tblQueue.ClearSelection();
-            tblQueue.Enabled = false;
             btnQueue.Enabled = false;
 
             string path = saveDirectory.SelectedPath;
-            if (!(path + "\\youtube-dl-gui").Contains("youtube-dl-gui")
-                && !Directory.Exists(path + "\\youtube-dl-gui"))
-                Directory.CreateDirectory(path + "\\youtube-dl-gui");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
 
             txtDebug.Clear();
             btnDownload.Enabled = false;
@@ -80,7 +79,7 @@ namespace youtube_dl_GUI
                 {
                     { "filetype", row.Cells["Type"].Value.ToString() },
                     { "url", row.Cells["Link"].Value.ToString() },
-                    { "dir", path + "\\youtube-dl-gui\\%(title)s.%(ext)s" }
+                    { "dir", path + "\\%(title)s.%(ext)s" }
                 };
                 var progress = new Progress<string>(s =>
                 {
@@ -124,7 +123,6 @@ namespace youtube_dl_GUI
             }
             
             await Task.WhenAll(tasks);
-            tblQueue.Enabled = true;
             btnQueue.Enabled = true;
             btnDownload.Enabled = true;
         }
@@ -147,28 +145,48 @@ namespace youtube_dl_GUI
                 MessageBox.Show("Must be a valid YouTube link.");
                 return;
             }
-            string title = "Fetching...";
-            var prog = new Progress<string>((s) => {
-                title = s;
-            });
-            string temp = txtUrl.Text;
+            string temp = txtUrl.Text, title = "Fetching";
             txtUrl.Clear();
-            tblQueue.Rows.Add(temp, title, cmbExtension.Text, "Queued", "0%", "", "Remove");
-            btnDownload.Enabled = true;
-            await Task.Factory.StartNew(() =>
+            if (temp.Contains("playlist"))
             {
-                yt.GetTitle(temp, prog);
-                tblQueue.Rows[idx].Cells["Title"].Value = title;
-                ++idx;
-            });
+                Progress<string> progress = new Progress<string>(async (s) =>
+                {
+                    string tempTitle = "Fetching";
+                    var p = new Progress<string>((s) => {
+                        tempTitle = s;
+                    });
+                    tblQueue.Rows.Add(s, tempTitle, cmbExtension.Text, "Queued", "0%", "", "Remove");
+                    await Task.Factory.StartNew(() =>
+                    {
+                        yt.GetTitle(s, p);
+                        tblQueue.Rows[idx].Cells["Title"].Value = tempTitle;
+                        ++idx;
+                    });
+                });
+                await Task.Factory.StartNew(() => yt.GetURL(temp, progress));
+                btnDownload.Enabled = true;
+            }
+            else
+            {
+                var prog = new Progress<string>((s) => {
+                    title = s;
+                });
+                tblQueue.Rows.Add(temp, title, cmbExtension.Text, "Queued", "0%", "", "Remove");
+                btnDownload.Enabled = true;
+                await Task.Factory.StartNew(() =>
+                {
+                    yt.GetTitle(temp, prog);
+                     tblQueue.Rows[idx].Cells["Title"].Value = title;
+                    ++idx;
+                });
+            }
         }
 
         private void tblQueue_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0 && !senderGrid.Rows[e.RowIndex].IsNewRow)
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
             {
                 senderGrid.Rows.RemoveAt(e.RowIndex);
                 --idx;
